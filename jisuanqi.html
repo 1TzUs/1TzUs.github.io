@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算器</title>
+    <style>
+        body{
+            margin:0;/*清除浏览器自带的margin和padding*/
+            padding: 0;
+            text-align: center;
+        }
+        input#output{
+            width: 335px;
+        }
+        input#\={
+            width: 250px;
+        }
+        input{
+            text-align: center;
+            width: 70px;
+            height: 70px;
+            margin: 10px;
+            border-radius: 10px;
+            font-size: 40px;
+        }
+        input:hover{ 
+	        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);/* 给予按钮阴影效果 */
+        }
+        input:active{
+            background-color:gray;
+            transform: translateY(4px);/*给予按钮一个y轴上的动态效果*/
+        }
+    </style>
+</head>
+<body>
+    <h1>尧佳麒的计算器</h1>
+    <input type="text" id="output" onkeydown="test()"><!-- onkeydown事件，实现按下enter进行计算功能 -->
+    <script>
+        var Symbol=["AC","Del","*","/","7","8","9",".","4","5","6","+","1","2","3","-","0","="] ;//定于计算器按钮内容数组
+        for(var i = 0;i < Symbol.length/4;i++){//计算机主要布局（通过for循环，4个一行将Symbol(符号数组)中的内容写入div中）
+        var div = document.createElement('div');//创建一个div节点
+            for(var j = 0;j < 4;j++){
+                if( i * 4+j < Symbol.length){
+                var input = document.createElement('input');//创建类型为button，id为对应符号的input元素
+                input.type = "button";
+                input.value = Symbol[i * 4 + j];
+                input.id = Symbol[i * 4 + j];
+                input.onclick = function(){//通过调用函数使输入的字符能够显示在输入框中   
+                        output.value += this.value ;  
+                    };
+                div.appendChild( input );//给div节点添加最后一个子节点
+                };
+        }   ;
+        document.body.appendChild(div);//给body节点添加最后一个子节点
+    };
+        var inputs = document.querySelectorAll('input');//将input按钮都抓进input数组
+        inputs[inputs.length -1].onclick = function(){ 
+            var s = output.value ;   //将输入的字符累积存入s变量
+            s = s.substring(0, s.length - 1);   
+            output.value = s ; 
+        };
+
+        //定义求和按钮
+        var sum=document.getElementById("=")
+        sum.onclick = function(){ 
+            var s = output.value ; 
+            var result ;   
+            try {  
+                result = eval(s) ; //eval()函数，对output.value中的表达式求值
+            }
+            catch (err) {  //当输入错误时返回内容“错误”  
+                result = '输入错误' ; 
+            }
+            result = parseFloat(result.toFixed(5));//保留五位小数,并去掉小数点后多余的0   
+            output.value = result ; 
+        };
+        //定义退格Del按钮
+        var Del = document.getElementById("Del");
+        Del.onclick = function () {
+            var Del1 = output.value;
+            Del1 = Del1.substring(0, Del1.length - 1);
+            output.value = Del1;
+        };
+        // 定义清零AC按钮
+        var AC = document.getElementById("AC");
+        AC.onclick = function () {
+            output.value = "";//将id为output的value的内容清空
+        };
+        //按下enter键进行计算的函数
+        function test(){
+            if(event.keyCode == 13){
+                var s = output.value ; 
+                var result ;   
+                try {  
+                    result = eval(s) ; //eval()函数，对output.value中的表达式求值
+                }
+                catch (err) {  //当输入错误时返回内容“错误”  
+                    result = '输入错误' ; 
+                }
+                result = parseFloat(result.toFixed(5));//保留五位小数,并去掉小数点后多余的0   
+                output.value = result ;
+            }
+            //实现按下Del键即清零
+            if(event.keyCode == 46){
+                output.value = "";
+            }
+
+        };
+
+    </script>
+</body>
+</html>
