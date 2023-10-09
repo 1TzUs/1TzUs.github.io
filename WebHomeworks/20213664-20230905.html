@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaWebHomework1</title>
+    <style>
+        body{
+            font: 16px "simhei", Arial, Helvetica, sans-serif;
+            background-color: #f5f5f5;
+        }
+        body>div{
+            width: 1000px;
+            background-color: white;
+            margin: 0 auto;/*块级元素居中*/
+            overflow: hidden;/*解决上部元素粘连问题*/
+        }
+        #top{
+            background-color: white;
+            color: #606266;
+            font-size: 25px;
+            font-weight: 600;
+        }
+        body>div>div{
+            margin: 20px;
+        }
+        #main>div{
+            background-color: #E8E8E8;
+            padding: 16px;
+            font-family: -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif, SimHei, SimSun;
+            margin:12px 40px;
+        }
+        .main_z_z{
+            background-color: #f5f5f5;
+        }
+        h3{
+            color: #4f4f4f;
+            margin: 8px 0 16px 0;
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 26px;
+        }
+        h4{
+            padding: 5px;
+        }
+        li{
+            margin-bottom: 5px;
+        }
+        .head{
+            width: 25px;
+            float: right;
+        }
+        #xuehao{
+            float:right;
+            margin-right: 10px;
+        }
+        .main_p{
+            padding: 10px;
+        }
+        .mi{
+            width: 20px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div id="top">
+        <span>实验报告</span>
+        <img src="https://img0.baidu.com/it/u=2407773217,1248198690&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500" alt="" class="head">
+        <span id="xuehao">20213664</span>
+        <hr>
+    </div>
+    <div id="main">
+        <h3>GitBash基础操作</h3>
+        <h3>一丶简介</h3><hr>
+        <div class="main_z">
+            <ul>
+                <li>学习了cd ls等Linux命令</li>
+                
+            </ul>
+        </div>
+        <h3>二、history</h3><hr>
+        <div class="main_z">
+            <p>history
+                1  / cd
+                2  cd /
+                3  list
+                4  ls
+                5   mkdir Xiahao
+                6  ls
+                7  cd Xiahao/
+                8  cp
+                9  cp --help
+               10  cls
+               11  cp C:\Users\Us\Pictures\threebody.jpg C:\Users\Us\Pictures\threebody.jpg
+               12  cp C:\Users\Us\DesktopUs@LAPTOP-NVC06L57 MINGW64 ~
+               13  $
+               14  Us@LAPTOP-NVC06L57 MINGW64 ~
+               15  $
+               16  Us@LAPTOP-NVC06L57 MINGW64 ~
+               17  $ / cd
+               18  bash: /: Is a directory
+               19  Us@LAPTOP-NVC06L57 MINGW64 ~
+               20  $ cd /
+               21  Us@LAPTOP-NVC06L57 MINGW64 /
+               22  $ list
+               23  bash: list: command not found
+               24  Us@LAPTOP-NVC06L57 MINGW64 /
+               25  $ ls
+               26  LICENSE.txt        bin/  dev/  git-bash.exe*  mingw64/  tmp/          unins000.exe*  usr/
+               27  ReleaseNotes.html  cmd/  etc/  git-cmd.exe*   proc/     unins000.dat  unins000.msg
+               28  Us@LAPTOP-NVC06L57 MINGW64 /
+               29  $  mkdir Xiahao
+               30  Us@LAPTOP-NVC06L57 MINGW64 /
+               31  $ ls
+               32  LICENSE.txt        Xiahao/  cmd/  etc/           git-cmd.exe*  proc/  unins000.dat   unins000.msg
+               33  ReleaseNotes.html  bin/     dev/  git-bash.exe*  mingw64/      tmp/   unins000.exe*  usr/
+               34  Us@LAPTOP-NVC06L57 MINGW64 /
+               35  $
+               36  Us@LAPTOP-NVC06L57 MINGW64 /
+               37  $ cd Xiahao/
+               38  Us@LAPTOP-NVC06L57 MINGW64 /Xiahao
+               39  $ cp
+               40  cp: missing file operand
+               41  Try 'cp --help' for more information.
+               42  Us@LAPTOP-NVC06L57 MINGW64 /Xiahao
+               43  $ cp --help
+               44  Usage: cp [OPTION]... [-T] SOURCE DEST
+               45    or:  cp [OPTION]... SOURCE... DIRECTORY
+               46    or:  cp [OPTION]... -t DIRECTORY SOURCE...
+               47  Copy SOURCE to DEST, or multiple SOURCE(s) to DIRECTORY.
+               48  Mandatory arguments to long options are mandatory for short options too.
+               49    -a, --archive                same as -dR --preserve=all
+               50        --attributes-only        don't copy the file data, just the attributes
+               51        --backup[=CONTROL]       make a backup of each existing destination file
+               52    -b                           like --backup but does not accept an argument
+               53        --copy-contents          copy contents of special files when recursive
+               54    -d                           same as --no-dereference --preserve=links
+               55    -f, --force                  if an existing destination file cannot be
+               56                                   opened, remove it and try again (this option
+               57                                   is ignored when the -n option is also used)
+               58    -i, --interactive            prompt before overwrite (overrides a previous -n
+               59                                    option)
+               60    -H                           follow command-line symbolic links in SOURCE
+               61    -l, --link                   hard link files instead of copying
+               62    -L, --dereference            always follow symbolic links in SOURCE
+               63    -n, --no-clobber             do not overwrite an existing file (overrides
+               64                                   a previous -i option)
+               65    -P, --no-dereference         never follow symbolic links in SOURCE
+               66    -p                           same as --preserve=mode,ownership,timestamps
+               67        --preserve[=ATTR_LIST]   preserve the specified attributes (default:
+               68                                   mode,ownership,timestamps), if possible
+               69                                   additional attributes: context, links, xattr,
+               70                                   all
+               71        --no-preserve=ATTR_LIST  don't preserve the specified attributes
+               72        --parents                use full source file name under DIRECTORY
+               73    -R, -r, --recursive          copy directories recursively
+               74        --reflink[=WHEN]         control clone/CoW copies. See below
+               75        --remove-destination     remove each existing destination file before
+               76                                   attempting to open it (contrast with --force)
+               77        --sparse=WHEN            control creation of sparse files. See below
+               78        --strip-trailing-slashes  remove any trailing slashes from each SOURCE
+               79                                   argument
+               80    -s, --symbolic-link          make symbolic links instead of copying
+               81    -S, --suffix=SUFFIX          override the usual backup suffix
+               82    -t, --target-directory=DIRECTORY  copy all SOURCE arguments into DIRECTORY
+               83    -T, --no-target-directory    treat DEST as a normal file
+               84    -u, --update                 copy only when the SOURCE file is newer
+               85                                   than the destination file or when the
+               86                                   destination file is missing
+               87    -v, --verbose                explain what is being done
+               88    -x, --one-file-system        stay on this file system
+               89    -Z                           set SELinux security context of destination
+               90                                   file to default type
+               91        --context[=CTX]          like -Z, or if CTX is specified then set the
+               92                                   SELinux or SMACK security context to CTX
+               93        --help     display this help and exit
+               94        --version  output version information and exit
+               95  By default, sparse SOURCE files are detected by a crude heuristic and the
+               96  corresponding DEST file is made sparse as well.  That is the behavior
+               97  selected by --sparse=auto.  Specify --sparse=always to create a sparse DEST
+               98  file whenever the SOURCE file contains a long enough sequence of zero bytes.
+               99  Use --sparse=never to inhibit creation of sparse files.
+              100  When --reflink[=always] is specified, perform a lightweight copy, where the
+              101  data blocks are copied only when modified.  If this is not possible the copy
+              102  fails, or if --reflink=auto is specified, fall back to a standard copy.
+              103  Use --reflink=never to ensure a standard copy is performed.
+              104  The backup suffix is '~', unless set with --suffix or SIMPLE_BACKUP_SUFFIX.
+              105  The version control method may be selected via the --backup option or through
+              106  the VERSION_CONTROL environment variable.  Here are the values:
+              107    none, off       never make backups (even if --backup is given)
+              108    numbered, t     make numbered backups
+              109    existing, nil   numbered if numbered backups exist, simple otherwise
+              110    simple, never   always make simple backups
+              111  As a special case, cp makes a backup of SOURCE when the force and backup
+              112  options are given and SOURCE and DEST are the same name for an existing,
+              113  regular file.
+              114  GNU coreutils online help: <https://www.gnu.org/software/coreutils/>
+              115  Report any translation bugs to <https://translationproject.org/team/>
+              116  Full documentation <https://www.gnu.org/software/coreutils/cp>
+              117  or available locally via: info '(coreutils) cp invocation'
+              118  Us@LAPTOP-NVC06L57 MINGW64 /Xiahao
+              119  $ cls
+              120  bash: cls: command not found
+              121  Us@LAPTOP-NVC06L57 MINGW64 /Xiahao
+              122  $ cp C:\Users\Us\Pictures\threebody.jpg C:\Users\Us\Pictures\threebody.jpg
+              123  cp: cannot stat 'C:UsersUsPicturesthreebody.jpg': No such file or directory
+              124  Us@LAPTOP-NVC06L57 MINGW64 /Xiahao
+              125  $ cp C:\Users\Us\Desktopcp C:\Users\Us\Desktop\book .-r
+              126  $ cp C\Users\Us\Desktopcp C:\Users\Us\Desktop\book .-r
+              127  $ cp /C/Users/Us/Desktop/book/ .-r
+              128  $ cp /C/Users/Us/Desktop/book/ . -r
+              129  $ cp/C/Users/Us/Desktop/book/ . -r
+              130  $ cp /C/Users/Us/Desktop/book/ . -r
+              131  cp /c/Users/Us/Desktop/book .
+              132  cp /c/Users/Us/Desktop/book . -r
+              133  cp /c/Users/Us/Desktop/book/* .
+              134  cp /c/Users/Us/Desktop/book/threebody.jpg .
+              135  cp /c/Users/Us/Desktop/Untitled-1.html .
+              136  cat Untitled-1.html 
+              137  cp /c/Users/Us/Desktop/book/xh.jpg .
+              138  rm book
+              139  rm book/
+              140  rm book/*
+              141  rm -r book/
+              142  history 
+              143  history > 20213664澶忚豹
+              144  rm 20213664澶忚豹 
+              145  history > 20213664澶忚豹.txt
+              146  cd /Xiahao/
+              147  rm threebody.jpg 
+              148  history 
+              149  cd xiahao
+              150  cd Xiahao
+              151  cd Xiahao/
+              152  cd /Xiahao/
+              153  cp /e/GitTem/book/ . -r
+              154  cp /e/Git/Xiahao/book/xh.jpg .
+              155  rm /e/Git/Xiahao/book/ . -r
+              156  ls
+              157  cat Untitled-1.html 
+              158  cat Untitled-1.html 
+              159  history > 20213664-20230905.txt
+              160  cd /
+              161  exit
+              162  cd/
+              163  cd 
+              164  cd /
+              165  cd Xiahao/
+              166  ls
+              167  date
+              168  cal
+              169  cal
+              170  ls ~ /mingw64/
+              171  ls ~ /Xiahao/
+              172  ls -a
+              173  ls -d
+              174  ls -h
+              175  ls -d -l
+              176  ls -t
+              177  less
+              178  less 20213664-20230905.txt 
+              179  less xh.jpg 
+              180  less Untitled-1.html 
+              181  history > 1.txt
+              182  exit
+              183  cd /
+              184  cd Xiahao/
+              185  free
+              186  pwd
+              187  df
+              188  history > 1.txt</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
