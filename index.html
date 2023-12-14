@@ -92,7 +92,7 @@
             window.setTimeout(showSays,4000);//setTimeout使函数每4s执行一次，并实现自循环
         }
         //按钮布局
-        var butn = ['一','二','三','四','五','六','七','八','九','十','十一','十二','十三','十四','十五','十六']
+        var butn = ['一','二','三','四','五','六','七','八','九','十','十一','十二','十三','十四','十五','考试']
         for(var k = 0;k < butn.length/8;k++){//计算机主要布局（通过for循环，4个一行butn中的内容写入div中）
         var div = document.createElement('div');//创建一个div节点
 
@@ -152,7 +152,7 @@
         document.getElementById("十五").onclick=function(){
             window.open('');
         };
-        document.getElementById("考试").onclick=function(){
+        document.getElementById("十六").onclick=function(){
             window.open('WebHomeworks/ks.html');
         };
 
