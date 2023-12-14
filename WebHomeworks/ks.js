@@ -4,7 +4,7 @@ var mediaData = {
         picFiles:["myface6.jpg","myface2.jpg","myface1.jpg","myface3.jpg","myface4.jpg","myface5.jpg"],
         names:["老师：李建宏","夏豪","熊金菁","廖鑫","郭昕奕","俞森洲"]
     },
-    podPath: "https:/jxzy-dmxy.jxstnu.edu.cn/",
+    podPath: "https://jxzy-dmxy.jxstnu.edu.cn/",
     videoPath: "https://jxzy-dmxy.jxstnu.edu.cn/tedVideos/",
     podFileStruct:[
         {
