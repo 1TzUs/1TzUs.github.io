@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>夏豪的自学平台</title>
+	<style type="text/css">
+		body {
+			background-color: rgba(128, 128, 118, 0.449);
+		}
+
+		button,input {
+			font-size: 1.5em;
+			margin-right: 2em;
+			width: 6em;
+			margin-top: 10px;
+			border-radius: 3px;
+			cursor: pointer;
+			transition: all 0.3s ease-in-out;
+		}
+		button,input:hover,
+        button,input:focus {
+            background-color: deepskyblue;
+        }
+
+        button,input:active {
+            transform: translateY(3px);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+            background-color: rgba(49, 197, 210, 0.359);
+        }
+		button#switch {
+			border-radius: 10%;
+			background-color: green;
+			color: white;
+
+		}
+
+		div#logo {
+			background-color: rgb(158, 170, 141);
+			color: white;
+			font-size: 3em;
+			padding: 10px 30px;
+			position: absolute;
+			right: 0;
+			top: 2em;
+		}
+
+		div#time {
+			background-color: lightblue;
+			color: white;
+			font-size: 3em;
+			padding: 10px 30px;
+			position: absolute;
+			left: 0;
+			top: 2em;
+		}
+
+		div#UI {
+			position: relative;
+			left: 0;
+			top: 3em;
+		}
+		div#paragraph{
+			position: relative;
+			left: 0;
+			top: 3em;
+		}
+		p#audioName{
+			font-size: 2em;
+			margin: 0;
+		}
+
+		div.Header{
+			position: absolute;
+			left: 340px;
+			top: 70px;
+		}
+		img.headerImg{
+			width: auto;
+			height: 105px;
+			margin-right: 70px;
+		}
+		p.headerName{
+			color: azure;
+			margin-left: 15px;
+		}
+		h2{
+			margin-top: 10px;
+			text-align: center;
+		}
+		.boot{
+			margin-top:60px ;
+		
+		}
+		.signature {
+			padding: 1em;
+			font-family: "Times New Roman", Times, serif;
+			font-size: 0.875em;
+			color: #ffffff;
+			background-color: rgba(0, 0, 0, 0.5);
+			text-align: center;
+		}
+	</style>
+	<script src="js/ks.js">
+
+	</script>
+
+</head>
+
+<body>
+	<div>
+		<h2 >夏豪的自学平台</h2>
+	</div>
+	<div id="logo"></div>
+
+	<div id="time"></div>
+	<div class = "Header" id="header">
+		
+	</div>
+	<div id="stage">
+		<audio id="myAudio"></audio>
+		<video id="myVideo"></video>
+	</div>
+	<div style="text-align: center; margin: 0;">
+		<p id = "audioName"></p>
+	</div>
+
+	<div id="paragraph"></div>
+
+	<div id="UI">
+
+		<button id="play">播放</button>
+		<button id="previous">上一个</button>
+		<button id="pause">暂停</button>
+		<button id="next">下一个</button>
+		<button id="switch">视频</button>
+	</div>
+	<div class="boot">
+		<p class="signature">江西科技师范大学</p>
+		<p class="signature">Java软件开发2班</p>
+		<p class="signature">小组成员：熊金菁，夏豪，廖鑫，郭昕奕，俞森洲</p>
+	</div>
+
+	<script>
+		//建立Model模拟播放对象，管理对象的一切属性和行为
+		var Model = {
+			i: 0,
+			isVideo: true,
+			UI: {
+				stageDom: document.getElementById("stage"),
+				videoDom: document.getElementById("myVideo"),
+				timeDom: document.getElementById("time"),
+				audioDom: document.getElementById("myAudio"),
+				logoDom: document.getElementById("logo"),
+				paraDom: document.getElementById("paragraph"),
+				headerDom: document.getElementById("header"),
+				//下面是按钮
+				playDom: document.getElementById("play"),
+				pauseDom: document.getElementById("pause"),
+				prevDom: document.getElementById("previous"),
+				nextDom: document.getElementById("next"),
+				switchDom: document.getElementById("switch"),
+				audioNameDom: document.getElementById("audioName")
+			},
+			play: function () {
+				Model.isVideo ? Model.UI.videoDom.play() : Model.UI.audioDom.play();
+				Model.mediaInfo();
+				Model.timeInfo();
+			},
+			pause: function () {
+				Model.isVideo ? Model.UI.videoDom.pause() : Model.UI.audioDom.pause();
+
+			},
+			prev: function () {
+				if(--Model.i <= -1){
+					Model.i = Model.isVideo ? mediaData.videoFileNames.length - 1: mediaData.podFileStruct.length - 1;
+				}
+				
+
+				let i = Model.i;
+
+				Model.loadMedia();
+				Model.play();
+			},
+			next: function () {
+				if(++Model.i >= (Model.isVideo ? mediaData.videoFileNames.length : mediaData.podFileStruct.length )){
+					Model.i = 0;
+				}
+				let i = Model.i;
+
+				Model.loadMedia();
+				Model.play();
+
+			},
+			//右上角logo
+			mediaInfo: function () {
+				let mediaNum = Model.isVideo ? mediaData.videoFileNames.length : mediaData.podFileStruct.length;
+
+				Model.UI.logoDom.textContent = 'NO.' + (Model.i + 1) + '/' + mediaNum;
+			},
+			//左上角时间长度
+			timeInfo: function () {
+				let mediaTime = Model.isVideo ? Model.UI.videoDom.duration : Model.UI.audioDom.duration;
+				mediaTime = parseInt(mediaTime);
+
+				let currentTime = Model.isVideo ? Model.UI.videoDom.currentTime : Model.UI.audioDom.currentTime;
+
+				currentTime = parseInt(currentTime);
+				Model.UI.timeDom.textContent = currentTime + ' s' + '/' + mediaTime + ' s';
+			},
+
+			loadMedia: function () {
+				let i = Model.i;
+				if (Model.isVideo) {
+					Model.UI.videoDom.src = mediaData.videoPath + mediaData.videoFileNames[i];
+				} else {
+					Model.UI.audioDom.src = mediaData.podPath + mediaData.podFileStruct[i].fileName;
+				}
+				Model.paragraph();
+			},
+			paragraph: function(){
+				Model.UI.paraDom.items = [];
+				
+				if(Model.isVideo){
+					Model.UI.audioNameDom.textContent = '';
+					while(Model.UI.paraDom.firstChild){
+						Model.UI.paraDom.removeChild(Model.UI.paraDom.firstChild);
+					}
+					for(let i = 1;i<=9;i++){
+						let tempDom = document.createElement('input');
+						tempDom.type = 'button';
+						tempDom.value = 'NO.' + i;
+						tempDom.className = 'setTime';
+						tempDom.style.width = 'fit-content';
+						Model.UI.paraDom.items[i-1] = tempDom;
+						Model.UI.paraDom.appendChild(tempDom);
+					
+        				Model.UI.paraDom.items[i - 1].onclick = function () {
+            				Model.UI.videoDom.currentTime = Model.UI.videoDom.duration / 9 * (i - 1);
+        				}
+					}
+				}else{
+					Model.UI.audioNameDom.textContent =  "音频名称：" + mediaData.podFileStruct[Model.i].fileName;
+					while(Model.UI.paraDom.firstChild){
+						Model.UI.paraDom.removeChild(Model.UI.paraDom.firstChild);
+					}
+					
+						for(let i = 0;i<mediaData.podFileStruct[Model.i].title.length;i++){
+							let tempDom = document.createElement('input');
+							tempDom.type = 'button';
+							tempDom.value =mediaData.podFileStruct[Model.i].title[i];
+							Model.UI.paraDom.items[i] = tempDom;
+							Model.UI.paraDom.appendChild(tempDom)
+							tempDom.style.width = 'fit-content';
+							Model.UI.paraDom.items[i].onclick = function(){
+								Model.UI.audioDom.currentTime = mediaData.podFileStruct[Model.i].time[i][0];
+								Model.play();
+								window.setTimeout(Model.pause,(mediaData.podFileStruct[Model.i].time[i][1]-mediaData.podFileStruct[Model.i].time[i][0])*1000)
+							}
+						}
+					
+					
+				}
+				
+			},
+			picture:function(){
+				for(let i = 1;i <= 6;i++){
+						let divDom = document.createElement('div');
+						let tempDom = document.createElement('img');
+						let tempPDom = document.createElement('p');
+						divDom.style.display = 'inline-block'; 
+						tempDom.className = 'headerImg';
+						tempPDom.className = 'headerName';
+						tempDom.src = mediaData.authors.path + mediaData.authors.picFiles[i-1];
+						tempPDom.textContent = mediaData.authors.names[i-1];
+						
+						divDom.appendChild(tempDom);
+						divDom.appendChild(tempPDom); 	
+						Model.UI.headerDom.appendChild(divDom);
+					
+					}
+
+			},
+			init: function () {
+				//视频UI全屏设置
+				let browserWidth = document.body.clientWidth;
+				Model.UI.videoDom.style.width = browserWidth + 'px';
+
+				Model.UI.stageDom.style.width = browserWidth + 'px';
+
+				Model.UI.stageDom.style.height = Model.UI.videoDom.clientHeight + 'px';
+
+
+				//预读媒体文件
+				Model.picture();
+				Model.loadMedia();
+
+				//初始化UI的控件的onclick属性
+
+				//下面是异步执行的代码
+				Model.UI.playDom.onclick = function () {
+					Model.play();
+				};
+
+				Model.UI.pauseDom.onclick = function () {
+					Model.pause();
+				};
+				Model.UI.prevDom.onclick = function () {
+					Model.prev();
+				};
+				Model.UI.nextDom.onclick = function () {
+					Model.next();
+				};
+				Model.UI.switchDom.onclick = function () {
+					Model.isVideo ? Model.UI.videoDom.pause() : Model.UI.audioDom.pause();
+					if(Model.i> mediaData.podFileStruct.length ||Model.i<=0){
+						Model.i = 0;
+					}
+					Model.isVideo = !Model.isVideo;
+					Model.UI.switchDom.textContent = Model.isVideo ? "视 频" : "音 频 ";
+					if (!Model.isVideo) {
+						Model.UI.stageDom.removeChild(Model.UI.videoDom);
+					} else {
+						Model.UI.stageDom.appendChild(Model.UI.videoDom);
+					}
+					Model.loadMedia();
+					Model.mediaInfo();
+
+				};
+				
+				window.setInterval(Model.timeInfo ,1000);
+
+			}//init 结束 
+			
+
+		}; //Model 结束
+
+		Model.init();
+
+		Model.mediaInfo();
+	</script>
+</body>
+
+</html>
