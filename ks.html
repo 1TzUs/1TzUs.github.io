@@ -3,6 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>夏豪的自学平台</title>
 	<style type="text/css">
 		body {
@@ -42,7 +43,7 @@
 			padding: 10px 30px;
 			position: absolute;
 			right: 0;
-			top: 2em;
+			top: 6.5em;
 		}
 
 		div#time {
@@ -52,7 +53,7 @@
 			padding: 10px 30px;
 			position: absolute;
 			left: 0;
-			top: 2em;
+			top: 6.5em;
 		}
 
 		div#UI {
@@ -70,19 +71,17 @@
 			margin: 0;
 		}
 
-		div.Header{
-			position: absolute;
-			left: 340px;
-			top: 70px;
+		div#header{
+			text-align: center;
 		}
 		img.headerImg{
 			width: auto;
-			height: 105px;
-			margin-right: 70px;
+			height: 150px;
+			margin-right: 10px;
 		}
 		p.headerName{
-			color: azure;
-			margin-left: 15px;
+			color: rgb(9, 10, 10);
+			font:bolder;
 		}
 		h2{
 			margin-top: 10px;
@@ -95,7 +94,7 @@
 		.signature {
 			padding: 1em;
 			font-family: "Times New Roman", Times, serif;
-			font-size: 0.875em;
+			font-size: 1.5em;
 			color: #ffffff;
 			background-color: rgba(0, 0, 0, 0.5);
 			text-align: center;
@@ -108,15 +107,15 @@
 </head>
 
 <body>
-	<div>
+	<div class = "Header" id = "header">
 		<h2 >夏豪的自学平台</h2>
 	</div>
 	<div id="logo"></div>
 
 	<div id="time"></div>
-	<div class = "Header" id="header">
+	<!-- <div class = "Header" id="header">
 		
-	</div>
+	</div> -->
 	<div id="stage">
 		<audio id="myAudio"></audio>
 		<video id="myVideo"></video>
@@ -136,9 +135,7 @@
 		<button id="switch">视频</button>
 	</div>
 	<div class="boot">
-		<p class="signature">江西科技师范大学</p>
-		<p class="signature">Java软件开发2班</p>
-		<p class="signature">小组成员：熊金菁，夏豪，廖鑫，郭昕奕，俞森洲</p>
+		<p class="signature">江西科技师范大学元宇宙产业学院&emsp;Java软件开发2班&emsp;第七小组&emsp;小组成员：熊金菁，夏豪，廖鑫，郭昕奕，俞森洲</p>
 	</div>
 
 	<script>
@@ -264,7 +261,7 @@
 				
 			},
 			picture:function(){
-				for(let i = 1;i <= 6;i++){
+				for(let i = 1;i <= mediaData.authors.names.length;i++){
 						let divDom = document.createElement('div');
 						let tempDom = document.createElement('img');
 						let tempPDom = document.createElement('p');
@@ -284,9 +281,9 @@
 			init: function () {
 				//视频UI全屏设置
 				let browserWidth = document.body.clientWidth;
-				Model.UI.videoDom.style.width = browserWidth + 'px';
+				Model.UI.videoDom.style.width = browserWidth  + 'px';
 
-				Model.UI.stageDom.style.width = browserWidth + 'px';
+				Model.UI.stageDom.style.width = browserWidth  + 'px';
 
 				Model.UI.stageDom.style.height = Model.UI.videoDom.clientHeight + 'px';
 
